@@ -1,0 +1,23 @@
+{
+  "name": "grunt-boilerplate",
+  "version": "0.0.1",
+  "authors": [
+    "Vladimir Tolstikov <wertyxa@bk.ru>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/original001/boilerplate",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "assets/plugins/",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "slick-carousel": "~1.4.1",
+    "magnific-popup": "~1.0.0",
+    "bootstrap": "~3.3.4",
+    "fuelux": "~3.6.4"
+  }
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+html(lang="en")
+head
+	meta(charset="UTF-8")
+	meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
+	block title
+		title Страница
+	//- link(href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,300,600,700|Roboto:400,300,300italic,400italic,500,500italic,700',rel='stylesheet',type='text/css')
+	link(rel="stylesheet", href="assets/css/main.css")
+	script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")
+	script.
+		window.jQuery || document.write('<script src="assets/js/vendor/jquery-1.11.1.min.js"><\/script>')	
+	script(scr="assets/js/vendor/modernizr-2.6.2.min.js")
+	script(src="assets/js/main.js")
+	<!--[if IE]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<!--[if (gte IE 6)&(lte IE 8)]>
+	<![endif]-->
+	// ==============
+	// addition links
+	// ==============
+	block links
+body
+	<!--[if lt IE 8]>
+	<p class="browsehappy">Вы используете <strong>устаревшую</strong> версию браузера. Пожалуйста <a href="http://browsehappy.com/">обновите ваш браузер</a> до последней версии.</p>
+	<![endif]-->
+	// HEAD BEGIN
+	header
+		.main
+	// HEAD END
+	// MAIN BEGIN
+	section
+		.main
+			block content
+	// MAIN END
+	// FOOTER BEGIN
+	footer
+		.main
+	// FOOTER END
+
+	
