@@ -82,7 +82,7 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: srcRoot + path,
-                    src: ['**/*.min.js','css/*.htc', '**/*.css', '!jquery/**/*', '!plugins/jquery/**/*', 'plugins/**/*.{gif, eot, woff, woff2, ttf, svg}'],
+                    src: ['**/*.min.js','css/*.htc', 'plugins/**/*.css','css/*.css', '!jquery/**/*', '!plugins/jquery/**/*', 'plugins/**/*.{gif, eot, woff, woff2, ttf, svg}'],
                     dest: destRoot + path
                 }]
             },
@@ -145,12 +145,12 @@ module.exports = function(grunt) {
         },
         sprite: {
             main: {
-                src: srcRoot + path + 'ico/btn-def/*.png',
-                dest: srcRoot + path + 'img/main-btn-def.png',
+                src: srcRoot + path + 'ico/*.png',
+                dest: srcRoot + path + 'img/ico.png',
                 imgPath: path + 'img/',
-                algorithm: 'top-down',
+                // algorithm: 'top-down',
                 cssFormat: 'css',
-                destCss: srcRoot + path + 'ico/btn-def/sprite.css'
+                destCss: srcRoot + path + 'ico/sprite.css'
             }
         },
         clean: {
