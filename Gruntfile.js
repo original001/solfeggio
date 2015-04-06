@@ -82,7 +82,7 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: srcRoot + path,
-                    src: ['**/*.min.js','css/*.htc', 'plugins/**/*.css','css/*.css', '!jquery/**/*', '!plugins/jquery/**/*', 'plugins/**/*.{gif, eot, woff, woff2, ttf, svg}'],
+                    src: ['**/*.min.js','css/*.htc', 'plugins/**/*.css','!**/_*','css/*.css', '!jquery/**/*', '!plugins/jquery/**/*', 'plugins/**/*.{gif, eot, woff, woff2, ttf, svg}'],
                     dest: destRoot + path
                 }]
             },
@@ -155,7 +155,7 @@ module.exports = function(grunt) {
         },
         clean: {
             all: {
-                src: destRoot
+                src: destRoot+path
             }
         }
     });
@@ -172,6 +172,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-newer');
     grunt.loadNpmTasks('grunt-spritesmith');
 
-    grunt.registerTask('cl', ['clean','coffee', 'uglify', 'copy', 'less','cssmin','jade','imagemin']);
-    grunt.registerTask('default', ['watch:livereload']);
+    grunt.registerTask('default', ['newer:coffee', 'newer:uglify', 'copy', 'newer:less','cssmin','newer:jade','newer:imagemin']);
+    grunt.registerTask('server', ['watch:livereload']);
+    grunt.registerTask('prod', ['clear','coffee', 'uglify', 'copy', 'less','cssmin','jade','imagemin'])
 };
