@@ -1,0 +1,6 @@
+.*
+!.gitignore
+!.bowerrc
+www
+design
+node_modules
