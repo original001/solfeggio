@@ -174,5 +174,5 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', ['newer:coffee', 'newer:uglify', 'copy', 'newer:less','cssmin','newer:jade','newer:imagemin']);
     grunt.registerTask('server', ['watch:livereload']);
-    grunt.registerTask('prod', ['clear','coffee', 'uglify', 'copy', 'less','cssmin','jade','imagemin'])
+    grunt.registerTask('prod', ['clean','coffee', 'uglify', 'copy', 'less','cssmin','jade','imagemin'])
 };
