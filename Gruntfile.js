@@ -15,8 +15,14 @@ module.exports = function(grunt) {
             development: {
                 files: [{
                     cwd: srcRoot + path + 'css/',
-                    src: ["*.less", ],
+                    src: ["*.less"],
                     dest: destRoot + path + 'css/',
+                    expand: true,
+                    ext: ".css"
+                }, {
+                    cwd: srcRoot + path + 'plugins/',
+                    src: ['bootstrap/less/bootstrap.less', 'fuelux/less/fuelux.less'],
+                    dest: destRoot + path + 'plugins/',
                     expand: true,
                     ext: ".css"
                 }]
@@ -25,16 +31,16 @@ module.exports = function(grunt) {
         cssmin: {
             options: {
                 keepBreaks: true,
-                rebase:false,
-                restructuring:false,
+                rebase: false,
+                restructuring: false,
                 compatibility: 'ie8,+properties.spaceAfterClosingBrace'
             },
             target: {
                 files: [{
                     expand: true,
-                    cwd: destRoot+path,
+                    cwd: destRoot + path,
                     src: ['css/main.css'],
-                    dest: destRoot+path,
+                    dest: destRoot + path,
                     ext: '.css'
                 }]
             }
@@ -82,8 +88,25 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: srcRoot + path,
-                    src: ['**/*.min.js','css/*.htc', 'plugins/**/*.css','!**/_*','css/*.css', '!jquery/**/*', '!plugins/jquery/**/*', 'plugins/**/*.{gif, eot, woff, woff2, ttf, svg}'],
+                    src: ['**/*.min.js', 'css/*.htc', '!**/_*', 'css/*.css'],
                     dest: destRoot + path
+                }]
+            },
+            plugins: {
+                files: [{
+                    expand: true,
+                    cwd: srcRoot + path + 'plugins/',
+                    src: [
+                        '**/*.css',
+                        // '**/*.gif',
+                        // '**/*.eot',
+                        // '**/*.woff',
+                        // '**/*.woff2',
+                        // '**/*.ttf',
+                        // '**/*.svg',
+                        '!plugins/jquery/**/*'
+                    ],
+                    dest: destRoot + path + 'plugins/'
                 }]
             },
             fonts: {
@@ -100,6 +123,29 @@ module.exports = function(grunt) {
                     cwd: srcRoot + path + 'js/',
                     src: ['*.js'],
                     dest: destRoot + path + 'js/'
+                }, {
+                    expand: true,
+                    cwd: srcRoot + path + 'plugins/',
+                    src: [
+                        // 'bootstrap/js/affix.js',
+                        // 'bootstrap/js/alert.js',
+                        // 'bootstrap/js/button.js',
+                        'bootstrap/js/carousel.js',
+                        // 'bootstrap/js/collapse.js',
+                        // 'bootstrap/js/dropdown.js',
+                        // 'bootstrap/js/modal.js',
+                        // 'bootstrap/js/popover.js',
+                        // 'bootstrap/js/scrollspy.js',
+                        // 'bootstrap/js/tab.js',
+                        // 'bootstrap/js/tooltip.js',
+                        // 'bootstrap/js/transition.js',
+                        'fuelux/js/radio.js',
+                        // 'fuelux/js/checkbox.js',
+                        // 'fuelux/js/selectlist.js',
+                        'fuelux/js/datepicker.js',
+                        // 'fuelux/js/infinite-scroll.js',
+                    ],
+                    dest: destRoot + path + 'plugins/'
                 }]
             }
         },
@@ -112,36 +158,7 @@ module.exports = function(grunt) {
             },
             options: {
                 livereload: true
-            },
-            config: {
-                files: ['Gruntfile.js'],
-                options: {
-                    reload: true
-                }
-            },
-            layout: {
-                files: [srcRoot + 'layout.jade'],
-                tasks: ['jade'],
-            },
-            scripts: {
-                files: [srcRoot + path + 'coffee/*.coffee'],
-                tasks: ['coffee'],
-            },
-            styles: {
-                files: [srcRoot + path + 'css/*.less', path + '_less/*.less'],
-                tasks: ['less']
-            },
-            jade: {
-                files: [srcRoot + '*.jade', '!layout.jade'],
-                tasks: ['jade']
-            },
-            plaginsscript: {
-                files: [srcRoot + path + 'js/*.js', path + 'plagins/**/*.js'],
-                tasks: ['uglify']
-            },
-            plaginsstyles: {
-                files: [srcRoot + path + 'plagins/**/*.css'],
-            },
+            }
         },
         sprite: {
             main: {
@@ -155,7 +172,7 @@ module.exports = function(grunt) {
         },
         clean: {
             all: {
-                src: destRoot+path
+                src: destRoot + path
             }
         }
     });
@@ -172,7 +189,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-newer');
     grunt.loadNpmTasks('grunt-spritesmith');
 
-    grunt.registerTask('default', ['newer:coffee', 'newer:uglify', 'copy', 'newer:less','cssmin','newer:jade','newer:imagemin']);
+    grunt.registerTask('default', ['newer:coffee', 'newer:uglify', 'copy', 'newer:less', 'cssmin', 'jade', 'newer:imagemin']);
     grunt.registerTask('server', ['watch:livereload']);
-    grunt.registerTask('prod', ['clean','coffee', 'uglify', 'copy', 'less','cssmin','jade','imagemin'])
+    grunt.registerTask('prod', ['clean', 'coffee', 'uglify', 'copy', 'less', 'cssmin', 'jade', 'imagemin'])
 };

@@ -1,10 +1,24 @@
-@path: 'css/';
+@path: 'assets/css/';
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+.slick-slider {
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+.slick-list.draggable {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 // base css
 
@@ -116,7 +130,7 @@ input {
     text-decoration: none;
     cursor: pointer;
 }
-.linkblock(@color: inherit, @td: none) {
+.ablock(@color: inherit, @td: none) {
     display: block;
     color: @color;
     text-decoration: @td;
@@ -226,21 +240,26 @@ input {
     background-image: -o-linear-gradient(@angle, @color 25%, transparent 25%, transparent 50%, @color 50%, @color 75%, transparent 75%, transparent);
     background-image: linear-gradient(@angle, @color 25%, transparent 25%, transparent 50%, @color 50%, @color 75%, transparent 75%, transparent);
 }
-.black(@opacity: 50%) {
+.blind(@opacity: 50%, @color: #000) {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: fadeout(#000, @opacity);
-    -pie-background: fadeout(#000, @opacity);
+    background: fadeout(@color, @opacity);
+    -pie-background: fadeout(@color, @opacity);
+    behavior:url('@{path}PIE.htc');
+}
+.bg(@bg){
+    background: @bg;
+    -pie-background: @bg;
     behavior:url('@{path}PIE.htc');
 }
 .abscent(@width) {
     position: absolute;
     width: @width;
     left: 50%;
-    margin-left: @width/2;
+    margin-left: -@width/2;
 }
 .round (@size){
     width: @size;
@@ -248,4 +267,12 @@ input {
     .bdrs(@size);
     line-height: @size;
     text-align: center;
+}
+.img-c (@width,@height:@width) {
+    width: @width;
+    height: @height;
+    text-align: center;
+    line-height: @height;
+    overflow: hidden;
+    img {vertical-align: middle; max-width: 100%; }
 }
