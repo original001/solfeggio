@@ -1,3 +1,4 @@
+// сделать префисы !!!!!!
 var srcRoot = 'public/',
     destRoot = 'www/',
     path = 'assets/';
@@ -88,7 +89,7 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: srcRoot + path,
-                    src: ['**/*.min.js', 'css/*.htc', '!**/_*', 'css/*.css','!plugins/**/*'],
+                    src: ['**/*.min.js', 'css/*.htc', '!**/_*', 'css/*.css','fonts/**/*','js/*.js','!plugins/**/*'],
                     dest: destRoot + path
                 }]
             },
@@ -109,28 +110,7 @@ module.exports = function(grunt) {
                         // '**/*.woff2',
                         // '**/*.ttf',
                         // '**/*.svg',
-                    ],
-                    dest: destRoot + path + 'plugins/'
-                }]
-            },
-            fonts: {
-                files: [{
-                    expand: true,
-                    cwd: srcRoot + path + 'fonts/',
-                    src: ['**/*'],
-                    dest: destRoot + path + 'fonts/'
-                }]
-            },
-            js: {
-                files: [{
-                    expand: true,
-                    cwd: srcRoot + path + 'js/',
-                    src: ['*.js'],
-                    dest: destRoot + path + 'js/'
-                }, {
-                    expand: true,
-                    cwd: srcRoot + path + 'plugins/',
-                    src: [
+                        //
                         // 'bootstrap/js/affix.js',
                         // 'bootstrap/js/alert.js',
                         // 'bootstrap/js/button.js',
@@ -155,14 +135,10 @@ module.exports = function(grunt) {
         },
         watch: {
             livereload: {
-                options: {
-                    livereload: true
-                },
+                options: {livereload: true},
                 files: [srcRoot + '**/*']
             },
-            options: {
-                livereload: true
-            }
+            options: {livereload: true}
         },
         sprite: {
             main: {
@@ -175,9 +151,7 @@ module.exports = function(grunt) {
             }
         },
         clean: {
-            all: {
-                src: destRoot + path
-            }
+            all: {src: destRoot + path}
         }
     });
 
