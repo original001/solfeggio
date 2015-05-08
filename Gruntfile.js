@@ -21,7 +21,7 @@ module.exports = function(grunt) {
                     ext: ".css"
                 }, {
                     cwd: srcRoot + path + 'plugins/',
-                    src: ['bootstrap/less/bootstrap.less', 'fuelux/less/fuelux.less'],
+                    // src: ['bootstrap/less/bootstrap.less', 'fuelux/less/fuelux.less'],
                     dest: destRoot + path + 'plugins/',
                     expand: true,
                     ext: ".css"
@@ -130,7 +130,7 @@ module.exports = function(grunt) {
                         // 'bootstrap/js/affix.js',
                         // 'bootstrap/js/alert.js',
                         // 'bootstrap/js/button.js',
-                        'bootstrap/js/carousel.js',
+                        // 'bootstrap/js/carousel.js',
                         // 'bootstrap/js/collapse.js',
                         // 'bootstrap/js/dropdown.js',
                         // 'bootstrap/js/modal.js',
@@ -139,10 +139,10 @@ module.exports = function(grunt) {
                         // 'bootstrap/js/tab.js',
                         // 'bootstrap/js/tooltip.js',
                         // 'bootstrap/js/transition.js',
-                        'fuelux/js/radio.js',
+                        // 'fuelux/js/radio.js',
                         // 'fuelux/js/checkbox.js',
                         // 'fuelux/js/selectlist.js',
-                        'fuelux/js/datepicker.js',
+                        // 'fuelux/js/datepicker.js',
                         // 'fuelux/js/infinite-scroll.js',
                     ],
                     dest: destRoot + path + 'plugins/'
