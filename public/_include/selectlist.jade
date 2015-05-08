@@ -1,0 +1,19 @@
+// SELECTLIST. Внимание!! id для инпута проставляются в верхний див с классом selectlist
+// В данный момент все id элементов селекта на странице одинаковые!!
+// Необходимо вносить изменения в соответствии с поведением в файле filter.js
+
+div(class="btn-group selectlist" data-resize="auto" data-initialize="selectlist" id="select")
+	button(class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button")
+		span(class="selected-label")
+		span(class="caret")
+		span(class="sr-only") Выберите вариант
+	ul(class="dropdown-menu" role="menu")
+		li(data-value="1")
+			a(href="#") Выберите вариант
+		li(data-value="2")
+			a(href="#") option 2
+		li(data-value="3")
+			a(href="#") option 3
+	input(class="hidden hidden-field" name="selectlist" readonly="readonly" aria-hidden="true" type="text")
+
+// SELECTLIST END
