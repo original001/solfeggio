@@ -88,7 +88,7 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: srcRoot + path,
-                    src: ['**/*.min.js', 'css/*.htc', '!**/_*', 'css/*.css'],
+                    src: ['**/*.min.js', 'css/*.htc', '!**/_*', 'css/*.css','!plugins/**/*'],
                     dest: destRoot + path
                 }]
             },
@@ -98,13 +98,17 @@ module.exports = function(grunt) {
                     cwd: srcRoot + path + 'plugins/',
                     src: [
                         '**/*.css',
+                        '**/*.min.js',
+                        '!jquery/**/*',
+                        '!bootstrap/dist/**/*',
+                        '!fuelux/dist/**/*',
+                        '!**/_*'
                         // '**/*.gif',
                         // '**/*.eot',
                         // '**/*.woff',
                         // '**/*.woff2',
                         // '**/*.ttf',
                         // '**/*.svg',
-                        '!plugins/jquery/**/*'
                     ],
                     dest: destRoot + path + 'plugins/'
                 }]
