@@ -26,29 +26,29 @@ module.exports = function(grunt) {
             },
             main: {
                 options: {
-                    sourceMapFilename: srcRoot + path + 'css/main.css.map',
+                    sourceMapFilename: destRoot + path + 'css/main.css.map',
                     sourceMapURL: 'main.css.map',
                 },
                 files: {
-                    '<%= meta.srcRoot + meta.path %>css/main.css': '<%= meta.srcRoot + meta.path %>css/main.less'
+                    '<%= meta.destRoot + meta.path %>css/main.css': '<%= meta.srcRoot + meta.path %>css/main.less'
                 }
             },
             bootstrap: {
                 options: {
-                    sourceMapFilename: srcRoot + path + 'plugins/bootstrap/less/bootstrap.css.map',
+                    sourceMapFilename: destRoot + path + 'plugins/bootstrap/less/bootstrap.css.map',
                     sourceMapURL: 'bootstrap.css.map',
                 },
                 files: {
-                    '<%= meta.srcRoot + meta.path %>plugins/bootstrap/less/bootstrap.css': '<%= meta.srcRoot + meta.path %>plugins/bootstrap/less/bootstrap.less',
+                    '<%= meta.destRoot + meta.path %>plugins/bootstrap/less/bootstrap.css': '<%= meta.srcRoot + meta.path %>plugins/bootstrap/less/bootstrap.less',
                 }
             },
             fuelux: {
                 options: {
-                    sourceMapFilename: srcRoot + path + 'plugins/fuelux/less/fuelux.css.map',
+                    sourceMapFilename: destRoot + path + 'plugins/fuelux/less/fuelux.css.map',
                     sourceMapURL: 'fuelux.css.map',
                 },
                 files: {
-                    '<%= meta.srcRoot + meta.path %>plugins/fuelux/less/fuelux.css': '<%= meta.srcRoot + meta.path %>plugins/fuelux/less/fuelux.less',
+                    '<%= meta.destRoot + meta.path %>plugins/fuelux/less/fuelux.css': '<%= meta.srcRoot + meta.path %>plugins/fuelux/less/fuelux.less',
                 }
             }
 
@@ -59,26 +59,27 @@ module.exports = function(grunt) {
                 map: true
             },
             main: {
-                src: srcRoot + path + 'css/main.css'
+                src: destRoot + path + 'css/main.css'
             }
         },
         cssmin: {
             options: {
                 keepBreaks: true,
                 rebase: false,
+                sourceMap:true,
                 restructuring: false,
                 compatibility: 'ie8,+properties.spaceAfterClosingBrace'
             },
             target: {
                 files: [{
                     expand: true,
-                    cwd: srcRoot + path,
+                    cwd: destRoot + path,
                     src: ['css/main.css'],
                     dest: destRoot + path,
                     ext: '.css'
                 },{
                     expand: true,
-                    cwd: srcRoot + path + 'plugins/',
+                    cwd: destRoot + path + 'plugins/',
                     src: [
                         'bootstrap/less/bootstrap.css',
                         'fuelux/less/fuelux.css',
@@ -175,41 +176,46 @@ module.exports = function(grunt) {
                 }]
             }
         },
+        // ===================================
+        // WATCH OPTIONS
+        // ===================================
         watch: {
-            livereload: {
-                options: {
-                    livereload: true
-                },
-                files: [srcRoot + '**/*']
+            options: {
+                livereload: true,
+                nospawn: true
             },
             main: {
-                options: {
-                    livereload: true,
-                    nospawn: true
-                },
                 files: srcRoot + path + 'css/main.less',
                 tasks: ['less:main', 'autoprefixer:main']
             },
             bootstrap: {
-                options: {
-                    livereload: true,
-                    nospawn: true
-                },
                 files: srcRoot + path + 'plugins/bootstrap/less/*.less',
                 tasks: ['less:bootstrap']
             },
             fuelux: {
-                options: {
-                    livereload: true,
-                    nospawn: true
-                },
                 files: srcRoot + path + 'plugins/fuelux/less/*.less',
                 tasks: ['less:fuelux']
             },
-            options: {
-                livereload: true
+            jade: {
+                files: srcRoot + '*.jade',
+                tasks: ['newer:jade']
+            },
+            coffee: {
+                files: srcRoot + path + 'js/*.coffee',
+                tasks: ['newer:coffee']
+            },
+            images: {
+                files: srcRoot + path + 'img/**/*.{png,jpg,gif,svg}',
+                tasks: ['newer:imagemin']
+            },
+            livereload: {
+                files: [srcRoot + '**/*'],
+                tasks: ['newer:copy']
             }
         },
+        // ===================================
+        // WATCH OPTIONS
+        // ===================================
         sprite: {
             main: {
                 src: srcRoot + path + 'ico/*.png',
@@ -242,11 +248,20 @@ module.exports = function(grunt) {
             all: {
                 src: destRoot + path
             }
+        },
+        connect: {
+            server: {
+                options: {
+                    port:9000,
+                    base: 'www/'
+                }
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-coffee');
@@ -260,8 +275,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-fontgen');
     grunt.loadNpmTasks('grunt-spritesmith');
 
-    grunt.registerTask('default', ['newer:coffee', 'newer:uglify', 'copy', 'newer:less', 'newer:autoprefixer', 'cssmin', 'jade', 'newer:imagemin']);
-    grunt.registerTask('server', ['watch']);
+    grunt.registerTask('default', ['connect','watch']);
     grunt.registerTask('prod', ['clean', 'coffee', 'uglify', 'copy', 'less', 'autoprefixer', 'cssmin', 'jade', 'imagemin']);
     grunt.registerTask('fonts', ['fontgen','concat']);
 
