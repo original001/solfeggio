@@ -242,20 +242,12 @@ module.exports = function(grunt) {
             all: {
                 src: destRoot + path
             }
-        },
-        connect: {
-            server:{
-                options: {
-                    port: 9000
-                }
-            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-coffee');
     grunt.loadNpmTasks('grunt-contrib-jade');
@@ -269,7 +261,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-spritesmith');
 
     grunt.registerTask('default', ['newer:coffee', 'newer:uglify', 'copy', 'newer:less', 'newer:autoprefixer', 'cssmin', 'jade', 'newer:imagemin']);
-    grunt.registerTask('server', ['connect','watch']);
+    grunt.registerTask('server', ['watch']);
     grunt.registerTask('prod', ['clean', 'coffee', 'uglify', 'copy', 'less', 'autoprefixer', 'cssmin', 'jade', 'imagemin']);
     grunt.registerTask('fonts', ['fontgen','concat']);
 
