@@ -256,7 +256,23 @@ module.exports = function(grunt) {
                     base: 'www/'
                 }
             }
+        },
+        prettify: {
+            options: {
+                indent: 4,
+                indent_inner_html:false,
+                end_with_newline:false,
+                unformatted: ["a", "span", "code", "pre", "sub", "sup", "em", "strong", "b", "i", "u", "strike"]
+            },
+            files: {
+                expand: true,
+                cwd: destRoot,
+                ext: '.html',
+                src: ['*.html'],
+                dest: destRoot
+            }
         }
+
     });
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -272,11 +288,12 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-autoprefixer');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-newer');
+    grunt.loadNpmTasks('grunt-prettify');
     grunt.loadNpmTasks('grunt-fontgen');
     grunt.loadNpmTasks('grunt-spritesmith');
 
     grunt.registerTask('default', ['connect','watch']);
-    grunt.registerTask('prod', ['clean', 'coffee', 'uglify', 'copy', 'less', 'autoprefixer', 'cssmin', 'jade', 'imagemin']);
+    grunt.registerTask('prod', ['clean', 'coffee', 'uglify', 'copy', 'less', 'autoprefixer', 'cssmin', 'jade', 'prettify','imagemin']);
     grunt.registerTask('fonts', ['fontgen','concat']);
 
 };
