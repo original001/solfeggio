@@ -266,7 +266,7 @@ module.exports = function(grunt) {
                 indent: 4,
                 indent_inner_html:false,
                 end_with_newline:false,
-                unformatted: ["a", "span", "code", "pre", "sub", "sup", "em", "strong", "b", "i", "u", "strike"]
+                unformatted: ["span", "code", "pre", "sub", "sup", "em", "strong", "b", "i", "u", "strike"]
             },
             files: {
                 expand: true,
