@@ -146,7 +146,7 @@ module.exports = function(grunt) {
                         '!jquery/**/*',
                         '!bootstrap/dist/**/*',
                         '!fuelux/dist/**/*',
-                        '!**/_*'
+                        '!**/_*',
                         // '**/*.gif',
                         // '**/*.eot',
                         // '**/*.woff',
@@ -154,23 +154,23 @@ module.exports = function(grunt) {
                         // '**/*.ttf',
                         // '**/*.svg',
                         //
-                        // 'bootstrap/js/affix.js',
-                        // 'bootstrap/js/alert.js',
-                        // 'bootstrap/js/button.js',
-                        // 'bootstrap/js/carousel.js',
-                        // 'bootstrap/js/collapse.js',
-                        // 'bootstrap/js/dropdown.js',
-                        // 'bootstrap/js/modal.js',
-                        // 'bootstrap/js/popover.js',
-                        // 'bootstrap/js/scrollspy.js',
-                        // 'bootstrap/js/tab.js',
-                        // 'bootstrap/js/tooltip.js',
-                        // 'bootstrap/js/transition.js',
-                        // 'fuelux/js/radio.js',
-                        // 'fuelux/js/checkbox.js',
-                        // 'fuelux/js/selectlist.js',
-                        // 'fuelux/js/datepicker.js',
-                        // 'fuelux/js/infinite-scroll.js',
+                        'bootstrap/js/affix.js',
+                        'bootstrap/js/alert.js',
+                        'bootstrap/js/button.js',
+                        'bootstrap/js/carousel.js',
+                        'bootstrap/js/collapse.js',
+                        'bootstrap/js/dropdown.js',
+                        'bootstrap/js/modal.js',
+                        'bootstrap/js/popover.js',
+                        'bootstrap/js/scrollspy.js',
+                        'bootstrap/js/tab.js',
+                        'bootstrap/js/tooltip.js',
+                        'bootstrap/js/transition.js',
+                        'fuelux/js/radio.js',
+                        'fuelux/js/checkbox.js',
+                        'fuelux/js/selectlist.js',
+                        'fuelux/js/datepicker.js',
+                        'fuelux/js/infinite-scroll.js',
                     ],
                     dest: destRoot + path + 'plugins/'
                 }]
@@ -195,6 +195,10 @@ module.exports = function(grunt) {
             fuelux: {
                 files: srcRoot + path + 'plugins/fuelux/less/*.less',
                 tasks: ['less:fuelux']
+            },
+            jadelayout: {
+                files: [srcRoot + 'layout.jade',srcRoot + '_include/**/*.{jade,html}'],
+                tasks: ['jade']
             },
             jade: {
                 files: srcRoot + '*.jade',
@@ -226,11 +230,11 @@ module.exports = function(grunt) {
                 destCss: srcRoot + path + 'ico/sprite.css'
             }
         },
+        // brew install batik fontforge ttfautohint ttf2eot
         fontgen: {
             all: {
                 options: {
                     path_prefix: '../fonts/webfonts/',
-                    // stylesheet: srcRoot + path + 'fonts/fonts.css',
                 },
                 files: [{
                     src: srcRoot + path + 'fonts/*.ttf',
