@@ -185,8 +185,8 @@ module.exports = function(grunt) {
                 nospawn: true
             },
             main: {
-                files: srcRoot + path + 'css/main.less',
-                tasks: ['less:main', 'autoprefixer:main']
+                files: [srcRoot + path + 'css/main.less',srcRoot + path + '_less/*.less'],
+                tasks: ['less:main']
             },
             bootstrap: {
                 files: srcRoot + path + 'plugins/bootstrap/less/*.less',
@@ -213,7 +213,7 @@ module.exports = function(grunt) {
                 tasks: ['newer:imagemin']
             },
             livereload: {
-                files: [srcRoot + '**/*'],
+                files: ['**/*.min.js', '!**/_*', 'css/*.css','fonts/webfonts/*','js/*.js', 'plugins/**/*'],
                 tasks: ['newer:copy']
             }
         },
