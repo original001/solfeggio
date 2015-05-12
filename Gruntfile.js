@@ -276,6 +276,26 @@ module.exports = function(grunt) {
                 dest: destRoot
             }
         }
+        shell: {
+            bower: {
+                command: 'bower i'
+            },
+            npm: {
+                command: 'npm i'
+            },
+            imagemin: {
+                command: 'npm i grunt-contrib-imagemin'
+            },
+            removegit: {
+                command: 'sudo rm -r .git/'
+            },
+            compile: {
+                command: 'grunt prod'
+            },
+            commit: {
+                command: 'git add . && git commit -m "first commit"'
+            }
+        }
 
     });
 
@@ -292,6 +312,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-autoprefixer');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-newer');
+    grunt.loadNpmTasks('grunt-shell');
     grunt.loadNpmTasks('grunt-prettify');
     grunt.loadNpmTasks('grunt-fontgen');
     grunt.loadNpmTasks('grunt-spritesmith');
@@ -299,5 +320,6 @@ module.exports = function(grunt) {
     grunt.registerTask('default', ['connect','watch']);
     grunt.registerTask('prod', ['clean', 'coffee', 'uglify', 'copy', 'less', 'autoprefixer', 'cssmin', 'jade', 'prettify','imagemin']);
     grunt.registerTask('fonts', ['fontgen','concat']);
+    grunt.registerTask('install', []);
 
 };
