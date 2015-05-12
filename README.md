@@ -1,4 +1,3 @@
 ### readme
 
-1. viewport
-2. grunt install
+1. grunt install
