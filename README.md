@@ -1,3 +1,4 @@
 ### readme
 
-need add flatten for plugin's files
+1. viewport
+2. grunt install
