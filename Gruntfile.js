@@ -275,13 +275,10 @@ module.exports = function(grunt) {
                 src: ['*.html'],
                 dest: destRoot
             }
-        }
+        },
         shell: {
             bower: {
                 command: 'bower i'
-            },
-            npm: {
-                command: 'npm i'
             },
             imagemin: {
                 command: 'npm i grunt-contrib-imagemin'
@@ -320,6 +317,6 @@ module.exports = function(grunt) {
     grunt.registerTask('default', ['connect','watch']);
     grunt.registerTask('prod', ['clean', 'coffee', 'uglify', 'copy', 'less', 'autoprefixer', 'cssmin', 'jade', 'prettify','imagemin']);
     grunt.registerTask('fonts', ['fontgen','concat']);
-    grunt.registerTask('install', []);
+    grunt.registerTask('install', ['shell']);
 
 };
