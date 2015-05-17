@@ -281,7 +281,7 @@ module.exports = function(grunt) {
                 command: 'bower i'
             },
             imagemin: {
-                command: 'npm i grunt-contrib-imagemin'
+                command: 'sudo npm i grunt-contrib-imagemin'
             },
             removegit: {
                 command: 'sudo rm -r .git/'
