@@ -213,7 +213,8 @@ module.exports = function(grunt) {
                 tasks: ['newer:imagemin']
             },
             livereload: {
-                files: ['**/*.min.js', '!**/_*', 'css/*.css','fonts/webfonts/*','js/*.js', 'plugins/**/*'],
+                files: [srcRoot + '**/*','!'+srcRoot+path+'**/*.less','!'+srcRoot+'*.jade'],
+                // files: ['img/**/*.{png,jpg,gif,svg}','**/*.min.js', '!**/_*', 'css/*.css','fonts/webfonts/*','js/*.js', 'plugins/**/*'],
                 tasks: ['newer:copy']
             }
         },

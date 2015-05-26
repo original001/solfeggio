@@ -7,6 +7,71 @@ $ 'img[title]'
             .after('<p></p>')
             .next().text($this.attr('title'))
 
+# accordeon
+$ document
+	.on 'click', '.sidebar_inner, .sidebar_inner__a', (e) ->
+		th = $ this
+		if th.hasClass 'sidebar_inner__a'
+			e.stopPropagation()
+			return
+
+		e.preventDefault()
+		isActive = th.hasClass 'open'
+		isEmpty = th.has 'ul'
+		close = ($ctx) ->
+			$ctx
+				.addClass 'sliding'
+				.removeClass 'open'
+				.children 'ul'
+				.slideUp ->
+					$ this
+						.parent()
+						.removeClass 'sliding'
+		open = ($ctx) ->
+			$ctx
+				.children 'ul'
+				.slideDown()
+				.end()
+				.addClass 'open'
+
+		if isActive
+			close th
+			return
+
+		unless isActive && isEmpty
+			close $ '.sidebar_inner.open'
+			open th
+			
+### ANCHOR ###
+
+$ '.anchor'
+	.on 'click', (e) ->
+		$ 'body, html'
+			.animate
+				scrollTop:0
+			, 800
+
+$ window
+	.on 'scroll', ->
+		$window = $ window
+		windowScrollTop = $window.scrollTop()
+		$anchor = $ '.anchor'
+		footerOffset = $ 'footer'
+			.offset().top
+		if windowScrollTop > 100
+			$anchor.addClass 'show'
+		else 
+			$anchor.removeClass 'show'
+			return
+
+		if footerOffset < windowScrollTop + $window.height()
+			$anchor.addClass 'abs'
+		else
+			$anchor.removeClass 'abs'
+
+### ANCHOR END ###
+
+
 $ '[data-slick-carousel]'
 	.slick
 		# accessibility: true # Enables tabbing and arrow key navigation
