@@ -7,40 +7,47 @@ $ 'img[title]'
             .after('<p></p>')
             .next().text($this.attr('title'))
 
-# accordeon
+### ACCORDION (by Tolstikov) ###
 $ document
-	.on 'click', '.sidebar_inner, .sidebar_inner__a', (e) ->
+	.on 'click', '.sidebar_inner, .product-nav-tabs__li', (e) ->
 		th = $ this
-		if th.hasClass 'sidebar_inner__a'
+		$target = $ e.target
+		if $target.is('a') && $target.attr('href') && !/#|javascript:/i.test $target.attr 'href'
 			e.stopPropagation()
 			return
 
 		e.preventDefault()
 		isActive = th.hasClass 'open'
-		isEmpty = th.has 'ul'
-		close = ($ctx) ->
-			$ctx
-				.addClass 'sliding'
-				.removeClass 'open'
-				.children 'ul'
-				.slideUp ->
-					$ this
-						.parent()
-						.removeClass 'sliding'
-		open = ($ctx) ->
-			$ctx
-				.children 'ul'
-				.slideDown()
-				.end()
-				.addClass 'open'
+		isntEmpty = !!th.has('ul, div').length
+		move = ($ctx, dir) ->
+			$parent = $ctx.parent()
 
-		if isActive
-			close th
+			if $parent.hasClass("sliding_#{dir}") then return
+
+			if dir == 'down'
+				methodClassControl = 'addClass'
+				methodSliding = 'slideDown'
+			else
+				methodClassControl = 'removeClass'
+				methodSliding = 'slideUp'
+
+			$parent.addClass "sliding_#{dir}"
+			$ctx[methodClassControl] 'open'
+				.children 'ul, div'
+				.first()[methodSliding] ->
+					$parent.removeClass "sliding_#{dir}"
+					return
+
 			return
 
-		unless isActive && isEmpty
-			close $ '.sidebar_inner.open'
-			open th
+		if isActive
+			move th, 'up'
+			return
+		else if isntEmpty
+			move $('.' + th.attr('class') + '.open'), 'up'
+			move th, 'down'
+
+### ACCORDION END ###
 			
 ### ANCHOR ###
 
