@@ -284,11 +284,14 @@ module.exports = function(grunt) {
 			imagemin: {
 				command: 'sudo npm i grunt-contrib-imagemin'
 			},
+			compile: {
+				command: 'grunt prod'
+			},
 			removegit: {
 				command: 'sudo rm -r .git/'
 			},
-			compile: {
-				command: 'grunt prod'
+			gininit: {
+				command: 'git init'
 			},
 			commit: {
 				command: 'git add . && git commit -m "first commit"'
