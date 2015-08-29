@@ -118,9 +118,11 @@ module.exports = function(grunt) {
 			}
 		},
 		coffee: {
+			options: {
+				bare: true
+			},
 			scripts: {
 				expand: true,
-				flatten: true,
 				cwd: srcRoot + path + 'js/',
 				src: ['*.coffee'],
 				dest: destRoot + path + 'js/',
