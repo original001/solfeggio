@@ -132,7 +132,7 @@ module.exports = function(grunt) {
 				files: [{
 					expand: true,
 					cwd: srcRoot + path,
-					src: ['**/*.min.js', 'css/*.htc', '!**/_*', 'css/*.css','fonts/webfonts/*', '!fonts/webfonts/*.css', 'js/*.js', '!plugins/**/*'],
+					src: ['**/*.min.js', 'css/*.htc', '!**/_*', 'css/*.css','fonts/webfonts/*.woff','fonts/webfonts/*.eot', '!fonts/webfonts/*.css', 'js/*.js', '!plugins/**/*'],
 					dest: destRoot + path
 				}]
 			},
@@ -238,7 +238,7 @@ module.exports = function(grunt) {
 					path_prefix: '../fonts/webfonts/',
 				},
 				files: [{
-					src: srcRoot + path + 'fonts/*.ttf',
+					src: srcRoot + path + 'fonts/*.{ttf, otf}',
 					dest: srcRoot + path + 'fonts/webfonts'
 				}]
 			}
