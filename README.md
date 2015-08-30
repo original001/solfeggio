@@ -1,10 +1,18 @@
-### readme
+# Compile project
 
-1. problem with very slow page refresh
-2. banners on preproses
+1. cd project_folder/
+2. npm i 
+3. grunt build (sudo npm i -g grunt-cli)
+4. happiness :)
 
-## works after all
+## Works after all
 
 - # -> javascript:void(0)
+- ie8-10
 - cdn jquery
 - grunt js unlink unusable
+
+### PIE
+
+- must have position: relative
+- doesn't work with pseudo-elements
