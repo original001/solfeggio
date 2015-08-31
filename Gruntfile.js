@@ -118,9 +118,11 @@ module.exports = function(grunt) {
 			}
 		},
 		coffee: {
+			options: {
+				bare: true
+			},
 			scripts: {
 				expand: true,
-				flatten: true,
 				cwd: srcRoot + path + 'js/',
 				src: ['*.coffee'],
 				dest: destRoot + path + 'js/',
@@ -132,7 +134,7 @@ module.exports = function(grunt) {
 				files: [{
 					expand: true,
 					cwd: srcRoot + path,
-					src: ['**/*.min.js', 'css/*.htc', '!**/_*', 'css/*.css','fonts/webfonts/*', '!fonts/webfonts/*.css', 'js/*.js', '!plugins/**/*'],
+					src: ['**/*.min.js', 'css/*.htc', '!**/_*', 'css/*.css','fonts/webfonts/*.woff','fonts/webfonts/*.eot', '!fonts/webfonts/*.css', 'js/*.js', '!plugins/**/*'],
 					dest: destRoot + path
 				}]
 			},
@@ -238,7 +240,7 @@ module.exports = function(grunt) {
 					path_prefix: '../fonts/webfonts/',
 				},
 				files: [{
-					src: srcRoot + path + 'fonts/*.ttf',
+					src: srcRoot + path + 'fonts/*.{ttf, otf}',
 					dest: srcRoot + path + 'fonts/webfonts'
 				}]
 			}
@@ -278,11 +280,28 @@ module.exports = function(grunt) {
 			}
 		},
 		shell: {
+<<<<<<< HEAD
 			removegit: {
 				command: 'sudo rm -r .git/'
 			},
 			compile: {
 				command: 'grunt build'
+=======
+			bower: {
+				command: 'bower i'
+			},
+			imagemin: {
+				command: 'sudo npm i grunt-contrib-imagemin'
+			},
+			compile: {
+				command: 'grunt prod'
+			},
+			removegit: {
+				command: 'sudo rm -r .git/'
+			},
+			gininit: {
+				command: 'git init'
+>>>>>>> 02f32e701cd186584891efb587a888fb80df72d0
 			},
 			commit: {
 				command: 'git init && git add . && git commit -m "first commit"'
@@ -310,7 +329,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-spritesmith');
 
 	grunt.registerTask('default', ['connect','watch']);
-	grunt.registerTask('prod', ['clean', 'coffee', 'uglify', 'copy', 'less', 'autoprefixer', 'cssmin', 'jade', 'prettify','imagemin']);
+	grunt.registerTask('build', ['clean', 'coffee', 'uglify', 'copy', 'less', 'autoprefixer', 'cssmin', 'jade', 'prettify','imagemin']);
 	grunt.registerTask('fonts', ['fontgen','concat']);
 	grunt.registerTask('install', ['shell']);
 
