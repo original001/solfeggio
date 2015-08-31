@@ -278,20 +278,14 @@ module.exports = function(grunt) {
 			}
 		},
 		shell: {
-			bower: {
-				command: 'bower i'
-			},
-			imagemin: {
-				command: 'sudo npm i grunt-contrib-imagemin'
-			},
 			removegit: {
 				command: 'sudo rm -r .git/'
 			},
 			compile: {
-				command: 'grunt prod'
+				command: 'grunt build'
 			},
 			commit: {
-				command: 'git add . && git commit -m "first commit"'
+				command: 'git init && git add . && git commit -m "first commit"'
 			}
 		}
 
