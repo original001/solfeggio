@@ -280,26 +280,16 @@ module.exports = function(grunt) {
 			}
 		},
 		shell: {
-			bower: {
-				command: 'bower i'
-			},
-			imagemin: {
-				command: 'sudo npm i grunt-contrib-imagemin'
-			},
-			compile: {
-				command: 'grunt prod'
-			},
 			removegit: {
 				command: 'sudo rm -r .git/'
 			},
-			gininit: {
-				command: 'git init'
+			compile: {
+				command: 'grunt build'
 			},
 			commit: {
-				command: 'git add . && git commit -m "first commit"'
+				command: 'git init && git add . && git commit -m "first commit"'
 			}
 		}
-
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-uglify');
