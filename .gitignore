@@ -1,6 +1,7 @@
 .*
 !.gitignore
 !.bowerrc
+public/assets/plugins
 www
 design
 node_modules

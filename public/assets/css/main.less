@@ -4,13 +4,16 @@
 
 @footer-height: 100px;
 @content-width: 960px;
+@font-size-base: 16px;
+@font-family-base: 'Roboto',Arial, sans-serif;
+@line-height-base: 1.42;
 html, body {
 	height: 100%;
 }
 body {
-	font:16px 'Roboto',Arial, sans-serif;
+	font:@font-size-base @font-family-base;
 	position: relative;
-	line-height: 1.42;
+	line-height: @line-height-base;
 	-webkit-font-smoothing: antialiased;
 }
 h1, h2, h3, h4, h5, h6 {

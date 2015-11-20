@@ -1,7 +1,7 @@
 # Compile project
 
 1. cd project_folder/
-2. npm i 
+2. npm i && bower i
 3. grunt build (sudo npm i -g grunt-cli)
 4. happiness :)
 
