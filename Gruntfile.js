@@ -258,8 +258,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-fontgen');
 	grunt.loadNpmTasks('grunt-spritesmith');
 
-	grunt.registerTask('default', ['connect','watch']);
-	grunt.registerTask('build', ['clean', 'coffee', 'uglify', 'copy', 'less', 'autoprefixer', 'cssmin', 'jade', 'prettify','imagemin']);
+	grunt.registerTask('default', ['build', 'connect', 'watch']);
+	grunt.registerTask('build', ['clean', 'coffee', 'uglify', 'copy', 'less', 'autoprefixer', 'cssmin', 'jade', 'prettify', 'imagemin']);
 	grunt.registerTask('fonts', ['fontgen','concat']);
 
 };
