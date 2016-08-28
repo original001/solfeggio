@@ -1,0 +1,17 @@
+extends ./layout.jade
+
+block title
+	title Типовая страница
+
+block css
+	link(rel="stylesheet", href="assets/plugins/bootstrap/less/bootstrap.css")
+
+block js
+
+block content
+	.chords-wrapper
+		.chord-tab.js-minor minor
+		.chord-tab.js-major major
+		.chord-tab.js-more more
+		.chord-tab.js-all all
+

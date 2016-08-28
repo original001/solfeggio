@@ -3,15 +3,18 @@
 @import url('../_less/fonts.less');
 
 @footer-height: 100px;
-@content-width: 960px;
+@content-width: 600px;
 @font-size-base: 16px;
 @font-family-base: 'Roboto',Arial, sans-serif;
 @line-height-base: 1.42;
+
+@color-blue: #4880dc;
 html, body {
 	height: 100%;
 }
 body {
 	font:@font-size-base @font-family-base;
+	color: #404040;
 	position: relative;
 	line-height: @line-height-base;
 	-webkit-font-smoothing: antialiased;
@@ -35,7 +38,7 @@ header, .section, footer {
 }
 footer, .footer-shiv {
 	clear: both;
-	height: @footer-height + 10px;
+	height: @footer-height;
 }
 .main {
 	position: relative;
@@ -45,6 +48,60 @@ footer, .footer-shiv {
 }
 .content {
 	.clearfix;
+}
+
+.chord {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	height: 50px;
+	width: 100px;
+	font-size: 30px;
+	text-align: center;
+	line-height: 50px;
+	&__loader {
+		position: absolute;
+		bottom: 0;
+		width: 0;
+		height: 3px;
+		background: @color-blue;
+		transition: width 2s linear;
+		&.active {
+			width: 100%;
+		}
+	}
+}
+
+.chords-wrapper {
+	text-align: center;
+	&:after {
+		content: '';
+		width: 100%;
+		display: inline-block;
+		height: 0;
+	}
+}
+
+.chord-tab {
+	text-align: center;
+	display: inline-block;
+	padding: 20px 30px;
+	border-radius: 8px;
+	background: #eee;
+	margin: 20px 10px;
+	font-size: 24px;
+	cursor: pointer;
+	transition: background .2s;
+	&:hover {
+		background: darken(#eee, 10%);
+	}
+	&.active {
+		background: @color-blue;
+		color: #fff;
+	}
 }
 
 //==================================
