@@ -1,28 +1,34 @@
+
 minorConfig = ['Am', 'Cm', 'Dm', 'Em', 'Fm', 'Gm']
 majorConfig = ['A', 'C', 'D', 'E', 'F', 'G']
 moreConfig = ['A7', 'A#', 'A#m']
 allConfig = minorConfig.concat minorConfig, majorConfig, moreConfig 
+
+config = [
+    name: 'minor'
+    chords: minorConfig
+  ,
+    name: 'major'
+    chords: majorConfig
+  ,
+    name: 'more'
+    chords: moreConfig
+  ,
+    name: 'all'
+    chords: allConfig
+]
 
 $ ->
   ion.sound
     sounds: allConfig.map (chord) ->
       {name: chord}
     path: 'assets/audio/'
-  $ '.js-minor'	
-    .on 'click', () ->
-      new App minorConfig, $(this)
 
-  $ '.js-major' 
-    .on 'click', () ->
-      new App majorConfig, $(this)
+  appCreator = new AppCreator
 
-  $ '.js-more' 
+  $ '.js-item'
     .on 'click', () ->
-      new App moreConfig, $(this)
-
-  $ '.js-all' 
-    .on 'click', () ->
-      new App allConfig, $(this)
+      appCreator.create(this)
 
 playRandom = (config, elem) ->
   index = getRandom(0, config.length - 1)
@@ -34,21 +40,37 @@ playRandom = (config, elem) ->
 getRandom = (min, max) ->
   Math.floor Math.random() * (max - min + 1) + min
 
+class AppCreator
+  constructor: () ->
 
-class App
-  constructor: (@config, @$elem) -> 
-    $ '.chord-tab'
+  create: (elem) ->
+    $el = $(elem)
+    configName = $el.data().config
+    configData = config.filter (config) -> config.name == configName
+
+    do @detach
+
+    $ '.js-item'
       .removeClass 'active'
 
-    @$elem.addClass 'active'
-    @prevChord = null
-    do @init
-    do @play
+    $el.addClass 'active'
 
-  init: -> 
+    data = $el.data "config-#{configName}"
+
+    if !data then $el.data "config-#{configName}", data = new App configData[0].chords
+
+    @currentApp = data.init();
+
+  detach: ->
     $ 'body'
       .off 'keydown'
 
+class App
+  constructor: (@config) -> 
+    @prevChord = null
+
+  init: -> 
+    do @play
     $ 'body'
       .on "keydown", (e) =>
         unless @chord then return

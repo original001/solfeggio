@@ -9,9 +9,12 @@ block css
 block js
 
 block content
+	mixin item(name)
+		.chord-tab.js-item(data-config=name)=name
+
 	.chords-wrapper
-		.chord-tab.js-minor minor
-		.chord-tab.js-major major
-		.chord-tab.js-more more
-		.chord-tab.js-all all
+		+item('minor')
+		+item('major')
+		+item('more')
+		+item('all')
 
